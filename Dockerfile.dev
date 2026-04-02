@@ -1,0 +1,15 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy dependency manifests first (better layer caching)
+COPY package*.json ./
+
+# Install all dependencies
+RUN npm ci
+
+# Source code is mounted as a volume — no COPY needed
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

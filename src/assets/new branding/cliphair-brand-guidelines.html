@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cliphair Visual Identity Handbook — Structured Brand Guidelines</title>
+<style>
+  :root {
+    --coral: #FF8C80;
+    --blue: #C2D9E8;
+    --pink: #FFCFD4;
+    --yellow: #FFED1A;
+    --green: #00C982;
+    --purple: #806EB0;
+    --offwhite: #FFF2E0;
+    --charcoal: #3B3838;
+    --font-display: Georgia, 'Times New Roman', serif;
+    --font-body: 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--offwhite);
+    color: var(--charcoal);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  header {
+    background: var(--charcoal);
+    color: var(--offwhite);
+    padding: 48px 40px;
+    border-bottom: 6px solid var(--coral);
+  }
+
+  header h1 {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  header p {
+    color: #ccc;
+    font-size: 0.95rem;
+    max-width: 600px;
+  }
+
+  nav {
+    background: var(--charcoal);
+    padding: 16px 40px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  nav a {
+    color: var(--yellow);
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border: 1px solid #555;
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+
+  nav a:hover { background: #444; }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+
+  section {
+    margin-bottom: 64px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .section-number {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ccc;
+    line-height: 1;
+    min-width: 60px;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    color: var(--charcoal);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #888;
+    margin-bottom: 10px;
+    margin-top: 28px;
+  }
+
+  h3:first-of-type { margin-top: 0; }
+
+  p { margin-bottom: 12px; color: #444; max-width: 720px; }
+  p:last-child { margin-bottom: 0; }
+
+  .highlight-box {
+    background: white;
+    border-left: 4px solid var(--coral);
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .highlight-box p { color: var(--charcoal); font-weight: 500; margin: 0; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 20px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
+
+  .card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #e8e8e8;
+  }
+
+  .card-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    margin-bottom: 8px;
+  }
+
+  .card h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--charcoal);
+  }
+
+  .card p { font-size: 0.88rem; color: #555; margin: 0; }
+
+  /* Colour swatches */
+  .swatch {
+    border-radius: 8px;
+    padding: 20px 16px 16px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .swatch-block {
+    width: 100%;
+    height: 60px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .swatch h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: var(--charcoal); }
+
+  .swatch-meta { font-size: 0.72rem; color: #666; line-height: 1.8; font-family: monospace; }
+
+  /* Tone pills */
+  .pill-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+  .pill {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 2px solid currentColor;
+  }
+
+  .pill-green { color: #00963c; background: #e6f9ee; border-color: #00963c; }
+  .pill-coral { color: #c94a3f; background: #fff0ef; border-color: #c94a3f; }
+  .pill-purple { color: var(--purple); background: #f3f0f9; border-color: var(--purple); }
+  .pill-yellow { color: #8a7400; background: #fffbe6; border-color: #c9a600; }
+
+  /* Rule list */
+  .rule-list { list-style: none; margin-top: 16px; }
+
+  .rule-list li {
+    padding: 10px 14px 10px 36px;
+    position: relative;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: #444;
+    background: white;
+    border: 1px solid #eee;
+  }
+
+  .rule-list li::before {
+    content: '→';
+    position: absolute;
+    left: 12px;
+    color: var(--coral);
+    font-weight: bold;
+  }
+
+  /* Headline examples */
+  .headline-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .headline-example {
+    background: var(--charcoal);
+    color: var(--offwhite);
+    padding: 16px;
+    border-radius: 6px;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+  }
+
+  /* Do/Don't */
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+
+  .do-box, .dont-box {
+    padding: 18px;
+    border-radius: 8px;
+  }
+
+  .do-box { background: #e8f9f0; border: 2px solid #00963c; }
+  .dont-box { background: #fdf0ef; border: 2px solid #c94a3f; }
+
+  .do-box h4 { color: #00963c; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+  .dont-box h4 { color: #c94a3f; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+
+  .do-box ul, .dont-box ul { list-style: none; padding: 0; }
+  .do-box ul li, .dont-box ul li { font-size: 0.88rem; padding: 4px 0; color: #333; }
+
+  /* Font specimen */
+  .font-specimen {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 16px;
+  }
+
+  .font-name { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: #999; margin-bottom: 8px; font-family: var(--font-body); }
+  .font-role { font-size: 0.7rem; color: #aaa; margin-top: 6px; font-family: var(--font-body); }
+  .font-abc { font-size: 1.8rem; letter-spacing: 0.04em; line-height: 1.3; color: var(--charcoal); }
+
+  /* Image type table */
+  .image-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.85rem; }
+  .image-table th { background: var(--charcoal); color: var(--offwhite); padding: 10px 14px; text-align: left; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .image-table td { padding: 10px 14px; border-bottom: 1px solid #eee; vertical-align: top; }
+  .image-table tr:nth-child(even) td { background: #fafafa; }
+
+  .check { color: #00963c; font-weight: bold; }
+  .cross { color: #ccc; }
+
+  /* Personality columns */
+  .personality-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+
+  .pf-col {
+    padding: 20px;
+    border-right: 1px solid #ddd;
+  }
+
+  .pf-col:last-child { border-right: none; }
+  .pf-col:nth-child(1) { background: var(--green); }
+  .pf-col:nth-child(2) { background: #e8f4f0; }
+  .pf-col:nth-child(3) { background: #f0f8ff; }
+  .pf-col:nth-child(4) { background: var(--pink); }
+
+  .pf-col h4 { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(0,0,0,0.5); margin-bottom: 12px; font-family: var(--font-body); font-weight: 700; }
+
+  .pf-col ul { list-style: none; padding: 0; }
+  .pf-col ul li { font-size: 0.88rem; padding: 3px 0; color: var(--charcoal); font-weight: 500; }
+
+  /* Brand descriptor */
+  .descriptor-box {
+    background: var(--charcoal);
+    color: var(--offwhite);
+    padding: 28px 32px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+
+  .descriptor-box p { color: var(--offwhite); max-width: none; font-size: 1rem; line-height: 1.7; margin: 0; }
+
+  /* Colour palette section headers */
+  .palette-section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #999;
+    margin: 32px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Logo rules */
+  .logo-rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
+
+  .logo-rule-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+
+  .logo-rule-card h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: var(--charcoal); }
+  .logo-rule-card p { font-size: 0.85rem; color: #555; margin: 0; }
+  .logo-rule-card.preferred { border-color: var(--green); border-width: 2px; }
+  .logo-rule-card.preferred h4::after { content: ' ★ PREFERRED'; font-size: 0.65rem; color: var(--green); letter-spacing: 0.08em; }
+
+  /* Tone of voice traits */
+  .tov-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
+
+  .tov-card {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+  }
+
+  .tov-card-header {
+    padding: 14px 16px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: white;
+  }
+
+  .tov-card-body { padding: 14px 16px; }
+  .tov-card-body ul { list-style: none; padding: 0; }
+  .tov-card-body ul li { font-size: 0.82rem; color: #555; padding: 3px 0; border-bottom: 1px solid #f0f0f0; }
+  .tov-card-body ul li:last-child { border-bottom: none; }
+
+  .tov-result {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: var(--offwhite);
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: #666;
+  }
+
+  .tov-result strong { color: var(--charcoal); }
+
+  /* Metaphor */
+  .metaphor-stages { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+
+  .stage-card {
+    padding: 24px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .stage-bud { background: #f0f0f0; border: 2px dashed #ccc; }
+  .stage-bloom { background: var(--green); border: 2px solid #009960; }
+  .stage-bloom h4, .stage-bloom p { color: white; }
+
+  .stage-card h4 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 8px; }
+  .stage-card p { font-size: 0.88rem; color: #555; margin: 0; max-width: none; }
+
+  /* Section accent bars */
+  section { position: relative; }
+
+  /* Ecomm tips */
+  .ecomm-rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+  .ecomm-rule { background: white; border-radius: 8px; padding: 18px; border: 1px solid #e0e0e0; }
+  .ecomm-rule h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--charcoal); margin-bottom: 8px; }
+  .ecomm-rule p { font-size: 0.83rem; color: #555; margin: 0; }
+
+  /* Big quote */
+  .brand-quote {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: var(--charcoal);
+    border-left: 5px solid var(--yellow);
+    padding: 16px 24px;
+    background: white;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-4, .personality-flow, .tov-grid, .headline-grid, .ecomm-rules { grid-template-columns: 1fr; }
+    .logo-rule-grid, .metaphor-stages, .do-dont, .image-table { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CLIPHAIR — Visual Identity Handbook</h1>
+  <p>Structured brand guidelines document. All core brand rules, colour values, typography, tone, and imagery guidance encoded for easy AI and human reference.</p>
+</header>
+
+<nav>
+  <a href="#descriptor">1. Descriptor</a>
+  <a href="#personality">2. Personality</a>
+  <a href="#tov">3. Tone of Voice</a>
+  <a href="#copy">5. Copy Approach</a>
+  <a href="#metaphor">6. Brand Metaphor</a>
+  <a href="#logo">7. Logo</a>
+  <a href="#marque">8. Marque</a>
+  <a href="#panelling">9. Panelling</a>
+  <a href="#motif">10. Motif</a>
+  <a href="#glass">11. Glass Marque</a>
+  <a href="#colour">12. Colour</a>
+  <a href="#fonts">13. Fonts</a>
+  <a href="#typography">14. Typography</a>
+  <a href="#headlines">15. Headlines</a>
+  <a href="#seal">16. Seal</a>
+  <a href="#pattern">17. Pattern</a>
+  <a href="#people">18. People Imagery</a>
+  <a href="#product">19. Product Imagery</a>
+  <a href="#combinations">20. Image Combinations</a>
+  <a href="#ecomm">21. Ecomm</a>
+</nav>
+
+<main>
+
+  <!-- ─────────────────── 1. DESCRIPTOR ─────────────────── -->
+  <section id="descriptor">
+    <div class="section-header">
+      <span class="section-number">1</span>
+      <h2>Brand Descriptor</h2>
+    </div>
+    <p>The simplest, most complete description of what Cliphair is — inclusive of all key brand attributes and exclusive to Cliphair.</p>
+    <div class="descriptor-box">
+      <p>CLIPHAIR provide the most complete range of 100% premium-grade human hair extensions and extension hair-care products, tools and accessories on the UK market. Products are sold principally online. Consumers report the product as good value for money, and two tiers of product quality are offered. CLIPHAIR offer the best customer service in the industry.</p>
+    </div>
+  </section>
+
+  <!-- ─────────────────── 2. PERSONALITY ─────────────────── -->
+  <section id="personality">
+    <div class="section-header">
+      <span class="section-number">2</span>
+      <h2>Brand Personality</h2>
+    </div>
+
+    <div class="highlight-box">
+      <p>"The relationship a hairdresser has with their regular clients. Honest, light-hearted, caring and professional."</p>
+    </div>
+
+    <div class="personality-flow">
+      <div class="pf-col">
+        <h4>Company Characteristics — We Are:</h4>
+        <ul>
+          <li>Interested in your solution</li>
+          <li>Fair</li>
+          <li>Straightforward</li>
+          <li>Value for money</li>
+          <li>Accessible</li>
+          <li>100% Human</li>
+        </ul>
+      </div>
+      <div class="pf-col">
+        <h4>Brand Persona — Which Is:</h4>
+        <ul>
+          <li>Empathetic</li>
+          <li>Helpful</li>
+          <li>The best solution</li>
+        </ul>
+      </div>
+      <div class="pf-col">
+        <h4>Brand Benefits — Which Delivers:</h4>
+        <ul>
+          <li>The look you want</li>
+          <li>Value for money</li>
+          <li>Confidence</li>
+        </ul>
+      </div>
+      <div class="pf-col">
+        <h4>Product Experience — Which Feels:</h4>
+        <ul>
+          <li>Happy</li>
+          <li>Beautiful</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────── 3. TONE OF VOICE ─────────────────── -->
+  <section id="tov">
+    <div class="section-header">
+      <span class="section-number">3</span>
+      <h2>Tone of Voice</h2>
+    </div>
+    <p>Written Tone of Voice is the personality of our brand expressed through the written word. A single, recognisable Tone of Voice makes us easier to understand.</p>
+
+    <div class="tov-grid">
+      <div class="tov-card">
+        <div class="tov-card-header" style="background:var(--charcoal);">Straightforward</div>
+        <div class="tov-card-body">
+          <ul>
+            <li>Avoid jargon</li>
+            <li>Get to the point</li>
+            <li>Simplicity beyond complexity</li>
+            <li>Direct &amp; clear</li>
+          </ul>
+          <div class="tov-result">Makes people feel: <strong>Listened to</strong></div>
+        </div>
+      </div>
+      <div class="tov-card">
+        <div class="tov-card-header" style="background:var(--green);">Fair</div>
+        <div class="tov-card-body">
+          <ul>
+            <li>Always hears the customer out</li>
+            <li>Shows we listen</li>
+            <li>Shows we care</li>
+            <li>Shows we are fair</li>
+          </ul>
+          <div class="tov-result">Makes people feel: <strong>Approachable</strong></div>
+        </div>
+      </div>
+      <div class="tov-card">
+        <div class="tov-card-header" style="background:var(--coral);">Playful</div>
+        <div class="tov-card-body">
+          <ul>
+            <li>Often light-hearted (not always)</li>
+            <li>Sound like people you want to be with</li>
+            <li>Provides advice — never patronising</li>
+            <li>Serious about problem solving but always upbeat</li>
+          </ul>
+          <div class="tov-result">Makes people feel: <strong>Engaged</strong></div>
+        </div>
+      </div>
+      <div class="tov-card">
+        <div class="tov-card-header" style="background:var(--purple);">Professional</div>
+        <div class="tov-card-body">
+          <ul>
+            <li>Demonstrates expertise and experience</li>
+            <li>Understands how problems occur</li>
+            <li>Shares knowledge</li>
+          </ul>
+          <div class="tov-result">Makes people feel: <strong>Confident</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────── 5. COPY APPROACH ─────────────────── -->
+  <section id="copy">
+    <div class="section-header">
+      <span class="section-number">5</span>
+      <h2>Copy Approach</h2>
+    </div>
+    <p>The copy approach is not the copy itself. It defines the direction and vibe.</p>
+
+    <div class="grid-2" style="margin-top:20px;">
+      <div class="card">
+        <div class="card-label">Core Rule</div>
+        <h4>Never take the brand too seriously — but always take solving the customer's problem seriously.</h4>
+        <p>Copy should make it clear that Cliphair has the solution, while remaining approachable, sometimes funny or playful.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Voice Model</div>
+        <h4>Best friend or hair stylist</h4>
+        <p>Provide the best advice in the way you might want your best friend or hair stylist to give it — warm, honest, helpful, with zero condescension.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────── 6. BRAND METAPHOR ─────────────────── -->
+  <section id="metaphor">
+    <div class="section-header">
+      <span class="section-number">6</span>
+      <h2>Brand Metaphor</h2>
+    </div>
+
+    <div class="brand-quote">"It's not just about adding hair — it's about BLOSSOMING into your fullest self."</div>
+
+    <p>The brand metaphor is a flower in bloom. The hair is already full of potential — Cliphair helps it open up and flourish. It's not about changing someone; it's about giving them confidence to fully blossom.</p>
+
+    <div class="metaphor-stages">
+      <div class="stage-card stage-bud">
+        <h4>🌱 Before — The Bud</h4>
+        <p>The customer at the beginning of their journey. A sense of limitation, concealment, or restraint — like a bud before bloom.</p>
+      </div>
+      <div class="stage-card stage-bloom">
+        <h4>🌸 After — The Full Bloom</h4>
+        <p>The full customer transformation. Confidence, radiance, and full self-expression — a bloom at its peak.</p>
+      </div>
+    </div>
+
+    <h3>Flower Aesthetic Direction</h3>
+    <p>Not just any flower. Look for blooms that feel almost <strong>architectural</strong> — strong structure, full body, and that "damn, that's perfect" finish. The dahlia is the primary reference: bold, full, and beautifully built.</p>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-label">Not this</div>
+        <p>Scent, ingredient, or being "pretty"</p>
+      </div>
+      <div class="card">
+        <div class="card-label">This</div>
+        <p>Structure, precision, quality — perfectly crafted beauty</p>
+      </div>
+      <div class="card">
+        <div class="card-label">The goal</div>
+        <p>Precise, dense, layered, full. Symmetrical, balanced, three-dimensional shape.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────── 7. LOGO ─────────────────── -->
+  <section id="logo">
+    <div class="section-header">
+      <span class="section-number">7</span>
+      <h2>Logo</h2>
+    </div>
+
+    <h3>Logo Origins</h3>
+    <p>The symbol is built from four rotating letter C's coming together to form a bloom — capturing the Cliphair transformation in a single mark. The full logo comprises two parts: the <strong>symbol</strong> (the flower/marque) and the <strong>Cliphair wordmark</strong>.</p>
+
+    <h3>Logo Configurations</h3>
+    <div class="logo-rule-grid">
+      <div class="logo-rule-card preferred">
+        <h4>Ranged Layout</h4>
+        <p>Best for most layouts and everyday use. Works well in headers, digital formats, and horizontal layouts.</p>
+      </div>
+      <div class="logo-rule-card">
+        <h4>Centred Layout</h4>
+        <p>Ideal for narrow, stacked, or centred layouts. Great for social posts, small spaces, or vertical formats.</p>
+      </div>
+    </div>
+
+    <h3>Strapline Usage</h3>
+    <div class="highlight-box">
+      <p>Strapline: <strong>"Be the you you want to be."</strong> — Optional. Use mainly in marketing or promotional pieces (ads, campaign assets). Not for everyday informational materials like leaflets or stationery.</p>
+    </div>
+
+    <h3>Micro Logo</h3>
+    <p>A special micro version exists for very small spaces. Only use the micro logo when width drops <strong>below 90px or 15mm</strong>. Anything larger — use the standard logo.</p>
+
+    <h3>Logo Colour</h3>
+    <div class="card" style="margin-top:12px; max-width:480px;">
+      <div class="card-label">Primary Logo Colour</div>
+      <h4 style="display:flex;align-items:center;gap:12px;">
+        <span style="display:inline-block;width:28px;height:28px;background:#3B3838;border-radius:4px;border:1px solid #ccc;"></span>
+        Charcoal — Default
+      </h4>
+      <p>Pantone: BLACK 7C | Print: C65 M60 Y65 K65 | Screen: R59 G56 B57 | Hex: #3B3838</p>
+      <p style="margin-top:8px;">Can also appear in <strong>off-white</strong> when the background calls for it. Avoid using logo on very light yellow or deep purple backgrounds — insufficient contrast.</p>
+    </div>
+
+    <h3>Independent Components Rule</h3>
+    <div class="highlight-box">
+      <p>⚠️ <strong>Non-negotiable:</strong> Both the symbol and the wordmark must appear somewhere within the same piece of collateral. They don't have to be adjacent, but they must both be present. Think of them like best friends — they don't have to stand next to each other, but they have to show up to the same event.</p>
+    </div>
+  </section>
+
+  <!-- ─────────────────── 8. MARQUE ─────────────────── -->
+  <section id="marque">
+    <div class="section-header">
+      <span class="section-number">8</span>
+      <h2>Marque</h2>
+    </div>
+    <p>The logo marque is one of the most fun and flexible brand assets. It's distinctive, recognisable, and built to work in many different ways across platforms.</p>
+    <ul class="rule-list">
+      <li>Use it on its own, layer it into layouts, or let it interact with the product (e.g. wrapping around a lock of hair)</li>
+      <li>Experiment freely — as long as it stays clear and on-brand</li>
+      <li>Can be used at large scale as a dominant compositional element</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────────── 9. PANELLING ─────────────────── -->
+  <section id="panelling">
+    <div class="section-header">
+      <span class="section-number">9</span>
+      <h2>Panelling</h2>
+    </div>
+    <p>The outer frame of the marque can be used as a panel or window device.</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-label">Use for</div>
+        <p>Framing photography</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Use for</div>
+        <p>Showcasing textures or colour swatches</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Use for</div>
+        <p>Highlighting important text, quotes, or instructions</p>
+      </div>
+    </div>
+    <p style="margin-top:16px;">Also works as a die-cut element — giving layouts a stylish, branded touch. Perfect as a device to highlight key information, house a quote, or an instruction.</p>
+  </section>
+
+  <!-- ─────────────────── 10. MOTIF ─────────────────── -->
+  <section id="motif">
+    <div class="section-header">
+      <span class="section-number">10</span>
+      <h2>Motif</h2>
+    </div>
+    <p>The marque rotated to form a circular pattern with a floral vibe — a more complex, repeating design element.</p>
+    <ul class="rule-list">
+      <li>Can sit alongside model or product photography</li>
+      <li>Can create stand-out panels and feature areas</li>
+      <li>Place behind the model — three quarters of the central marque within the motif should be visible</li>
+      <li>Layouts should be kept simple when using the motif — it is more complex than other toolkit components and needs room to breathe</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────────── 11. GLASS MARQUE ─────────────────── -->
+  <section id="glass">
+    <div class="section-header">
+      <span class="section-number">11</span>
+      <h2>Glass Marque</h2>
+    </div>
+    <p>A semi-transparent, sleek version of the marque that adds extra dimension without hiding what's underneath. Gives a layered, fresh, crisp look.</p>
+    <ul class="rule-list">
+      <li>Use sparingly — a little goes a long way</li>
+      <li>Never use alongside the solid marque in the same space — one per area</li>
+      <li>When positioned over text, leave approximately 50% of the glass marque clear without text beneath it</li>
+      <li>Keep arrangements simple — over-complication adds noise and overpowers the glass marque</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────────── 12. COLOUR ─────────────────── -->
+  <section id="colour">
+    <div class="section-header">
+      <span class="section-number">12</span>
+      <h2>Colour Palette</h2>
+    </div>
+
+    <div class="palette-section-label">Primary Vibrants — Used for image backgrounds (model shots, product images). Not for typography.</div>
+    <div class="grid-4">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#FF8C80;"></div>
+        <h4>CORAL</h4>
+        <div class="swatch-meta">
+          Pantone: 2344C<br>
+          CMYK: C0 M56 Y48 K0<br>
+          RGB: 255, 141, 128<br>
+          Hex: #FF8C80
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#C2D9E8;"></div>
+        <h4>BLUE</h4>
+        <div class="swatch-meta">
+          Pantone: 277C<br>
+          CMYK: C25 M12 Y0 K0<br>
+          RGB: 193, 218, 232<br>
+          Hex: #C2D9E8
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#FFCFD4;"></div>
+        <h4>PINK</h4>
+        <div class="swatch-meta">
+          Pantone: 3568<br>
+          CMYK: C0 M21 Y4 K0<br>
+          RGB: 255, 206, 211<br>
+          Hex: #FFCFD4
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#FFED1A; border:1px solid #ddd;"></div>
+        <h4>YELLOW</h4>
+        <div class="swatch-meta">
+          Pantone: 102<br>
+          CMYK: C0 M10 Y100 K0<br>
+          RGB: 255, 238, 25<br>
+          Hex: #FFED1A
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section-label">Root Connector Colours — Supplemental shades. Green and purple are good foils for vibrant colours (strong contrast, good for text panels). Charcoal and off-white are typography colours.</div>
+    <div class="grid-4">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#00C982;"></div>
+        <h4>GREEN</h4>
+        <div class="swatch-meta">
+          Pantone: 2414<br>
+          CMYK: C74 M0 Y68 K0<br>
+          RGB: 0, 201, 131<br>
+          Hex: #00C982
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#806EB0;"></div>
+        <h4>PURPLE</h4>
+        <div class="swatch-meta">
+          Pantone: 2102C<br>
+          CMYK: C49 M55 Y0 K0<br>
+          RGB: 128, 109, 177<br>
+          Hex: #806EB0
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#FFF2E0; border:1px solid #ddd;"></div>
+        <h4>OFF-WHITE</h4>
+        <div class="swatch-meta">
+          Pantone: 7604<br>
+          CMYK: C0 M5 Y10 K0<br>
+          RGB: 255, 242, 224<br>
+          Hex: #FFF2E0<br>
+          <em>Use as background colour</em>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#3B3838;"></div>
+        <h4>CHARCOAL</h4>
+        <div class="swatch-meta">
+          Pantone: 4286<br>
+          CMYK: C55 M55 Y40 K30<br>
+          RGB: 59, 56, 57<br>
+          Hex: #3B3838<br>
+          <em>Typography only — no other use</em>
+        </div>
+      </div>
+    </div>
+
+    <h3>Colour Rules</h3>
+    <ul class="rule-list">
+      <li>Primary vibrants are for image backgrounds — never for typography</li>
+      <li>Green and purple work as text panel backgrounds, creating strong contrast against vibrants</li>
+      <li>Charcoal is for typography ONLY — no other applications</li>
+      <li>Off-white can be used as a background colour</li>
+      <li>Light yellow and deep purple offer insufficient contrast for certain combinations — check carefully</li>
+      <li>If it's not clearly readable, don't use it</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────────── 13. FONTS ─────────────────── -->
+  <section id="fonts">
+    <div class="section-header">
+      <span class="section-number">13</span>
+      <h2>Fonts</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="font-specimen">
+        <div class="font-name">Chocolatier Bold</div>
+        <div class="font-abc" style="font-family:Georgia,serif; font-weight:900; font-style:italic;">ABCDEFGHIJ<br>1234567890</div>
+        <div class="font-role">Hero / Display Font — headlines and large display text</div>
+        <p style="margin-top:12px; font-size:0.85rem; color:#666;">A caps-only font with a wavy, ornate feel. Elegance balances the capital letters and adds warmth. Includes glyph characters that add personality — allow these to appear provided they don't compromise readability.</p>
+      </div>
+      <div class="font-specimen">
+        <div class="font-name">Plus Jakarta Sans</div>
+        <div class="font-abc" style="font-family:'Segoe UI',sans-serif; letter-spacing:0.02em;">ABCDEFGHIJ<br>1234567890</div>
+        <div class="font-role">Body / Text Font — all body copy, captions, UI text</div>
+        <p style="margin-top:12px; font-size:0.85rem; color:#666;">Simple but beautifully crafted with characterful detail elements. Readable and accessible with more personality than standard sans-serif choices.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────── 14. TYPOGRAPHY ─────────────────── -->
+  <section id="typography">
+    <div class="section-header">
+      <span class="section-number">14</span>
+      <h2>Typography Hierarchy</h2>
+    </div>
+    <p>Typography centres around large headline placement, which typically dictates the layout of a page.</p>
+
+    <div class="grid-2">
+      <div>
+        <h3>Hierarchy Levels</h3>
+        <ul class="rule-list">
+          <li><strong>Headline:</strong> Large, bold, expressive — Chocolatier Bold. Short copy only.</li>
+          <li><strong>Second Level / Intro:</strong> Relatively large — communicates confidence. Engaging paragraph or quote.</li>
+          <li><strong>Body Copy:</strong> Regular weight. Bold for subheadings. General text panels.</li>
+          <li><strong>Captions / Notes:</strong> Smallest text on the page. Regular weight. Annotations only.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Style Principles</h3>
+        <ul class="rule-list">
+          <li>Headlines should be short and expressive</li>
+          <li>Large placement creates confidence and dominates the layout</li>
+          <li>Create cascading levels of importance on the page</li>
+          <li>Never use primary vibrant colours for typography</li>
+          <li>Typography colours: Charcoal (#3B3838) or Off-White (#FFF2E0)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────── 15. HEADLINES ─────────────────── -->
+  <section id="headlines">
+    <div class="section-header">
+      <span class="section-number">15</span>
+      <h2>Headlines &amp; Copy Examples</h2>
+    </div>
+
+    <p>Speak with confidence, not arrogance. Be playful, proud, and a little self-deprecating. Never take the brand too seriously. Approachable, down-to-earth, and fun.</p>
+
+    <h3>Approved Example Headlines</h3>
+    <div class="headline-grid">
+      <div class="headline-example">LONGER. FULLER. FIERCER.</div>
+      <div class="headline-example">CLIP IT REAL GOOD!</div>
+      <div class="headline-example">FROM 'MEH' TO MAJOR</div>
+      <div class="headline-example">AVERAGE CALLED. WE HUNG UP.</div>
+      <div class="headline-example">100% REAL HAIR. 0% FAKE VIBES.</div>
+      <div class="headline-example">YOU CAN'T FAKE THIS KIND OF REAL</div>
+      <div class="headline-example">REAL HAIR. UNREAL RESULTS.</div>
+      <div class="headline-example">SHE CAME. SHE CLIPPED. SHE CONQUERED.</div>
+      <div class="headline-example">YOU BRING THE VIBE — WE BRING THE VOLUME</div>
+      <div class="headline-example">CLIP. SLAY. REPEAT.</div>
+      <div class="headline-example">MORE VOLUME MORE DRAMA MORE 'YOU'</div>
+      <div class="headline-example">FROM FLAT TO PHAT</div>
+      <div class="headline-example">HAIR TODAY, SLAY TOMORROW</div>
+      <div class="headline-example">NOT EVERYONE CAN HANDLE THIS MUCH FABULOUS</div>
+      <div class="headline-example">BECAUSE SUBTLE IS OVERRATED</div>
+    </div>
+  </section>
+
+  <!-- ─────────────────── 16. SEAL ─────────────────── -->
+  <section id="seal">
+    <div class="section-header">
+      <span class="section-number">16</span>
+      <h2>Quality Seal</h2>
+    </div>
+    <p>Seal reads: <strong>"100% HUMAN · QUALITY HAIR ASSURANCE"</strong> with the marque at centre.</p>
+    <ul class="rule-list">
+      <li>Represents high standards, rigorous QC, and 100% real human hair</li>
+      <li>Include at least once on a piece of collateral (e.g. a brochure)</li>
+      <li>Use sparingly on promotional materials — one seal per piece is plenty</li>
+      <li>Looks excellent as an emboss — adds a subtle touch of luxury</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────────── 17. PATTERN ─────────────────── -->
+  <section id="pattern">
+    <div class="section-header">
+      <span class="section-number">17</span>
+      <h2>Pattern</h2>
+    </div>
+    <p>A geometric wavy pattern that mimics hair strands.</p>
+    <ul class="rule-list">
+      <li>Can be used in any brand colour depending on desired prominence</li>
+      <li>Preferred use: coloured white, layered over one of the paler colours — a good balance between punchy and insipid</li>
+      <li>Use as decoration (e.g. wrapping paper) or to complement more prominent graphics</li>
+      <li>Should never overpower primary graphics — it is a supporting element</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────────── 18. PEOPLE IMAGERY ─────────────────── -->
+  <section id="people">
+    <div class="section-header">
+      <span class="section-number">18</span>
+      <h2>People Imagery</h2>
+    </div>
+
+    <h3>Photography Direction</h3>
+    <p>Distinct in a sea of sameness within the hair extension category. Photography should project a blend of <strong>character, playfulness, and irreverent tone</strong>. Models should seem comfortable and confident in their own skin, not taking themselves too seriously, embracing fun.</p>
+
+    <div class="grid-2">
+      <div>
+        <h3>Colour</h3>
+        <p>Images should have vibrancy through the primary vibrants colour palette — visually striking and recognisable with a strong focus on the product.</p>
+
+        <h3>Flower Prop Rule</h3>
+        <ul class="rule-list">
+          <li>A single flower should appear in a spirited and light-hearted way</li>
+          <li>Allow models to express themselves using the flower in different poses</li>
+          <li>Aim for a 60:40 ratio of flower inclusion to none</li>
+          <li>Not every shot needs a prop — look for poses that lend themselves to its inclusion</li>
+          <li>Keep shots fresh and varied across the portfolio</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Flower in Shot — Four Approaches</h3>
+        <div class="card" style="margin-bottom:10px;"><div class="card-label">Expressive prop</div><p>Used playfully — the flower takes an active, expressive role in the shot</p></div>
+        <div class="card" style="margin-bottom:10px;"><div class="card-label">Face frame</div><p>Flower in front of the face, becoming a more prominent component of the shot</p></div>
+        <div class="card" style="margin-bottom:10px;"><div class="card-label">Subtle complement</div><p>Not centre stage, but complementing the composition</p></div>
+        <div class="card"><div class="card-label">Character enhancer</div><p>Used to enhance the fun character of the shot — models play with the flower</p></div>
+      </div>
+    </div>
+
+    <h3>Expression Guide</h3>
+    <div class="grid-3" style="margin-top:12px;">
+      <div class="card"><p>Pursing lips, hair falling over face — fun, playful character</p></div>
+      <div class="card"><p>Playful poses in wider shots, playing with the hair</p></div>
+      <div class="card"><p>Interact and play with the hair — don't be scared</p></div>
+      <div class="card"><p>Cheeky gestures suggesting a stolen, fun-loving moment</p></div>
+      <div class="card"><p>Self-deprecating and humorous expressions — warm, welcoming, approachable</p></div>
+      <div class="card"><p>Simpler, natural movement shots — balance the super expressive ones</p></div>
+      <div class="card"><p>Models with unique or stand-out features — makes Cliphair feel different</p></div>
+      <div class="card"><p>Emphasise volume and bounce through hair movement</p></div>
+      <div class="card"><p>Candid, thoughtful moments — always positive in feeling</p></div>
+    </div>
+
+    <h3>Hair Quality in Imagery</h3>
+    <ul class="rule-list">
+      <li><strong>Natural look:</strong> Hair should look natural, not artificial or over-styled. No stiff hair-spray look.</li>
+      <li><strong>Thickness and fullness:</strong> Consistent thickness root to tip — without looking too weighty</li>
+      <li><strong>Shine and health:</strong> Bouncy, healthy appearance with a beautiful shine and reflective feel</li>
+      <li><strong>Texture consistency:</strong> Use lighting to lift texture detail and highlight clean, detailed strands</li>
+      <li><strong>Colour accuracy:</strong> Communicate the true colour as closely as possible</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────────── 19. PRODUCT IMAGERY ─────────────────── -->
+  <section id="product">
+    <div class="section-header">
+      <span class="section-number">19</span>
+      <h2>Product Imagery</h2>
+    </div>
+
+    <h3>Extension Product Shots</h3>
+    <p>Clean, simple, and all about the hair. Beautifully styled extensions set against one of the vibrant primary colours.</p>
+
+    <div class="grid-2">
+      <div>
+        <h3>Props: Flower</h3>
+        <ul class="rule-list">
+          <li>Same playful rules as people photography</li>
+          <li>Adds interest and complements the product — shouldn't steal the show</li>
+          <li>A little goes a long way</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Props: Fluted/Reeded Glass</h3>
+        <ul class="rule-list">
+          <li>Hair can lay on it, over it, or beside it</li>
+          <li>The reflective quality mirrors the look of extensions: bright, light, almost translucent</li>
+          <li>Creates crisp, fresh tonal space with lovely shadows and reflections when lit with studio lights</li>
+          <li>Glass elevated above surface helps create shadows and reflections</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Composition Approaches</h3>
+    <div class="grid-2" style="margin-top:12px;">
+      <div class="card"><div class="card-label">Vertical glass</div><p>Glass placed vertically with hair extension draped across — light, reflection and refraction fall across the hair</p></div>
+      <div class="card"><div class="card-label">Flatlay glass</div><p>Glass laid on coloured surface with hair draped across the glass — works well for larger products</p></div>
+      <div class="card"><div class="card-label">Detail/close-up</div><p>Product laid across elevated glass — light passes through. Glass elevated above surface for shadows and reflections.</p></div>
+      <div class="card"><div class="card-label">Hair flatlay</div><p>Hair dictates composition across bright colour background. Incorporate a flower to enhance the arrangement.</p></div>
+    </div>
+
+    <h3>Haircare Product Shots</h3>
+    <div class="do-dont">
+      <div class="do-box">
+        <h4>✓ Do</h4>
+        <ul>
+          <li>Use vibrant palette backgrounds</li>
+          <li>Use reeded glass prop for light/shadow/texture</li>
+          <li>Experiment with compositions — keep range looking fresh</li>
+          <li>Can incorporate a hair extension for context, to break up straight lines</li>
+          <li>Reeded glass flat lay with product, or glass vertical with product in front / behind</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <h4>✗ Don't</h4>
+        <ul>
+          <li>Use flowers in haircare shots — could confuse customers by suggesting ingredients or fragrance</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Neutral / Fallback Style</h3>
+    <p>For scenarios requiring a stripped-back approach (e.g. third-party retailer requests): use off-white palette colour (#FFF2E0) as background, or a neutral/warm grey. <strong>This is not the preferred brand style.</strong></p>
+  </section>
+
+  <!-- ─────────────────── 20. IMAGE COMBINATIONS ─────────────────── -->
+  <section id="combinations">
+    <div class="section-header">
+      <span class="section-number">20</span>
+      <h2>Image Combinations — Prop Usage Guide</h2>
+    </div>
+    <p>Which props are permitted for each image type.</p>
+
+    <h3>Model Images</h3>
+    <table class="image-table">
+      <thead>
+        <tr>
+          <th>Image Type</th>
+          <th>Flower</th>
+          <th>Glass</th>
+          <th>Neutral</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Hero model</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td></tr>
+        <tr><td>Before / After</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td></tr>
+        <tr><td>Extension detail</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td></tr>
+        <tr><td>Introspective</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td></tr>
+        <tr><td>Model groups</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td></tr>
+        <tr><td>Product in use</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td></tr>
+        <tr><td>Product in hand</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:32px;">Product Images</h3>
+    <table class="image-table">
+      <thead>
+        <tr>
+          <th>Image Type</th>
+          <th>Flower</th>
+          <th>Glass</th>
+          <th>Neutral</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Range image</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Product descriptor</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Fastening detail</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Colour close-up</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td></tr>
+        <tr><td>Packaged product</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Accessories</td><td class="cross">—</td><td class="check">✓</td><td class="cross">—</td></tr>
+        <tr><td>Hair care product</td><td class="cross">—</td><td class="check">✓</td><td class="cross">—</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ─────────────────── 21. ECOMM ─────────────────── -->
+  <section id="ecomm">
+    <div class="section-header">
+      <span class="section-number">21</span>
+      <h2>Ecommerce (Ecomm)</h2>
+    </div>
+    <p>Ecommerce content should use all the brand components covered in these guidelines, kept simple and uncluttered.</p>
+
+    <div class="ecomm-rules">
+      <div class="ecomm-rule">
+        <h4>Composition Rule</h4>
+        <p>Keep compositions simple and clear. Don't force too much information into one space. If something is worth covering, create a new tile for it.</p>
+      </div>
+      <div class="ecomm-rule">
+        <h4>Use Panelling</h4>
+        <p>The panelling device is a key tool for ecomm. Gives a distinct, pragmatic way to contain imagery and information — ordered and accessible without being boring.</p>
+      </div>
+      <div class="ecomm-rule">
+        <h4>Content Types</h4>
+        <p>Tiles can promote a product, highlight features, or bring attention to an outcome. Use the full brand colour palette and typography hierarchy.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer style="background:var(--charcoal);color:#888;padding:32px 40px;text-align:center;font-size:0.8rem;">
+  <p>Cliphair Visual Identity Handbook — Structured HTML Reference Document</p>
+  <p style="margin-top:4px;">All brand elements, colours, and rules extracted from the official Cliphair Brand Guidelines PDF.</p>
+</footer>
+
+</body>
+</html>
