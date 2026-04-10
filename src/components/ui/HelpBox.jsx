@@ -1,10 +1,25 @@
-import { memo } from 'react';
+import { memo, useRef, useEffect } from 'react';
 
 const HelpBox = memo(function HelpBox({ help, isOpen, onToggle }) {
+    const wrapRef = useRef(null);
+
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const handlePointerDown = (e) => {
+            if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+                onToggle();
+            }
+        };
+
+        document.addEventListener('pointerdown', handlePointerDown);
+        return () => document.removeEventListener('pointerdown', handlePointerDown);
+    }, [isOpen, onToggle]);
+
     if (!help) return null;
 
     return (
-        <span className="help-trigger-wrap">
+        <span className="help-trigger-wrap" ref={wrapRef}>
             <button type="button" className="help-trigger" onClick={onToggle} aria-label="Show help">?</button>
             {isOpen && (
                 <div className="help-box">
