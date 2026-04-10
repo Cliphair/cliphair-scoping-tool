@@ -406,7 +406,7 @@ body {
 }
 
 .question-field label {
-    display: block;
+    display: flex;
     font-weight: 600;
     font-size: 0.92rem;
     margin-bottom: 0.2rem;
@@ -726,34 +726,52 @@ body {
     color: #fff;
 }
 
+/* Backdrop — sits behind the panel/sheet, above the page */
+.help-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(59, 56, 57, 0.3);
+    z-index: 199;
+    animation: fadeIn 0.2s ease;
+}
+
+/* Desktop: right-side sliding panel */
 .help-box {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: -8px;
-    z-index: 50;
-    width: 320px;
-    background: #fff;
-    border: 1px solid var(--clr-border);
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: 340px;
+    background: var(--clr-surface);
     border-left: 3px solid var(--clr-coral);
-    border-radius: var(--radius-sm);
-    padding: 1rem 1.15rem;
-    box-shadow: var(--shadow-md);
-    font-size: 0.82rem;
-    line-height: 1.55;
+    padding: 2.5rem 1.5rem 2rem;
+    box-shadow: -4px 0 24px rgba(59, 56, 57, 0.1);
+    font-size: 0.85rem;
+    line-height: 1.6;
     color: var(--clr-text);
-    animation: fadeIn 0.15s ease;
+    z-index: 200;
+    overflow-y: auto;
+    animation: slideInRight 0.25s ease;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(0); }
 }
 
 .help-close {
     position: absolute;
-    top: 6px;
-    right: 8px;
+    top: 1rem;
+    right: 1rem;
     background: none;
     border: none;
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: var(--clr-text-muted);
     cursor: pointer;
-    padding: 2px 4px;
+    padding: 4px 6px;
+    line-height: 1;
+}
+
+.help-close:hover {
+    color: var(--clr-text);
 }
 
 .help-why {
@@ -1094,16 +1112,20 @@ body {
     }
 
     .help-box {
-        position: fixed;
-        top: auto;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        inset: auto 0 0 0;
         width: 100%;
+        border-left: none;
+        border-top: 3px solid var(--clr-coral);
         border-radius: var(--radius) var(--radius) 0 0;
         max-height: 60vh;
-        overflow-y: auto;
-        z-index: 200;
+        padding: 2rem 1.25rem 1.5rem;
+        box-shadow: 0 -4px 24px rgba(59, 56, 57, 0.1);
+        animation: slideUpMobile 0.25s ease;
+    }
+
+    @keyframes slideUpMobile {
+        from { transform: translateY(100%); }
+        to   { transform: translateY(0); }
     }
 
     .matrix-grid {
