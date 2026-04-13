@@ -5,7 +5,8 @@ export const typeSpecificQuestions = {
         tagline: "Replacing repetitive manual tasks with automated workflows",
         questions: [
             {
-                id: "auto_trigger", label: "What kicks this off?", type: "select",
+                id: "auto_trigger", label: "What kicks this off?",
+                type: "select",
                 options: [
                     "Something happens (new order, form submitted, email received)",
                     "A schedule (daily, weekly, monthly)",
@@ -20,7 +21,19 @@ export const typeSpecificQuestions = {
                     ]
                 }
             },
-            { id: "auto_trigger_detail", label: "Tell us more about the trigger:", type: "textarea" },
+            {
+                id: "auto_trigger_detail", label: "Tell us more about the trigger:", type: "textarea",
+                help: {
+                    why: "A trigger is the specific event or condition that starts the automation — the 'if this happens, do that' moment.",
+                    examples: [
+                        "A new order is placed in Shopify with a trade customer tag.",
+                        "Every Monday at 7am, before the team arrives.",
+                        "When someone clicks 'Generate Report' in ClickUp.",
+                        "A form is submitted on the website."
+                    ],
+                    tip: "Be as specific as you can — 'a new order' is good, 'a new trade order over £200' is even better."
+                }
+            },
             {
                 id: "auto_steps", label: "What should happen automatically, in order?",
                 hint: "Step 1 does X, then step 2 does Y, etc.", type: "textarea",
@@ -55,12 +68,13 @@ export const typeSpecificQuestions = {
                 }
             },
             {
-                id: "auto_sensitive", label: "Does this involve sensitive data?", type: "select",
+                id: "auto_sensitive", label: "Does this involve sensitive data?",
+                hint: "Tick all that apply",
+                type: "multi-select",
                 options: [
-                    "Yes — customer data (names, emails, addresses)",
-                    "Yes — payment or financial data",
-                    "Yes — login credentials or passwords",
-                    "Yes — multiple types of sensitive data",
+                    "Customer data (names, emails, addresses)",
+                    "Payment or financial data",
+                    "Login credentials or passwords",
                     "No sensitive data",
                     "Not sure"
                 ],
@@ -98,11 +112,13 @@ export const typeSpecificQuestions = {
                 }
             },
             {
-                id: "agent_channel", label: "Where will people use it?", type: "select",
+                id: "agent_channel", label: "Where will people use it?",
+                hint: "Tick all that apply",
+                type: "multi-select",
                 options: [
                     "Website chat widget", "Slack", "Email",
                     "Inside another tool (ClickUp, Shopify, etc.)",
-                    "Multiple places", "Other"
+                    "Multiple places"
                 ],
                 help: {
                     examples: [
@@ -111,6 +127,12 @@ export const typeSpecificQuestions = {
                         '"Email" — to draft responses to incoming customer emails.'
                     ]
                 }
+            },
+            {
+                id: "agent_channel_detail", label: "Which places?",
+                hint: "List each channel or tool where it will be used",
+                type: "textarea",
+                showIf: (a) => Array.isArray(a.agent_channel) && a.agent_channel.includes("Multiple places")
             },
             {
                 id: "agent_boundaries", label: "What should it never do or say?",
@@ -202,6 +224,21 @@ export const typeSpecificQuestions = {
                         "Something like Notion's table view where we can filter and sort.",
                         "I've seen a tool called [X] that does something similar — here's the link."
                     ]
+                }
+            },
+            {
+                id: "app_visuals", label: "Can you share any images, videos, or screenshots?",
+                hint: "Paste links to anything that helps show what you mean. Press 'Add another link' to add more.",
+                type: "repeatable-text",
+                help: {
+                    why: "Seeing the actual screen, mockup, or example cuts through ambiguity faster than any description.",
+                    examples: [
+                        "A screenshot of the current spreadsheet you want to replace",
+                        "A Loom walkthrough of the existing process",
+                        "A photo of a whiteboard sketch of the layout",
+                        "A link to a Figma, Canva, or Google Slides mockup"
+                    ],
+                    tip: "Even a rough phone photo of a hand-drawn sketch is useful."
                 }
             }
         ]
