@@ -816,9 +816,15 @@ body {
    ───────────────────────────────────────────── */
 
 .checkbox-group {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 0.45rem;
+}
+
+@media (min-width: 640px) {
+    .checkbox-group {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .checkbox-label {
