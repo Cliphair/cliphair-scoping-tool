@@ -22,7 +22,7 @@ export const stepsData = [
                 hint: "Tick all that apply, and add anyone else in the text box",
                 type: "multi-select",
                 options: [
-                    "Customer Service team", "Marketing team", "Warehouse / Fulfilment team",
+                    "Customer Service team", "Google Ads", "Paid Social", "Organic Social", "Influencer", "Warehouse / Fulfilment team",
                     "Trade / B2B team", "Web / Tech team", "Management",
                     "Retail customers (B2C)", "Trade customers (B2B / salons)", "Other"
                 ],
@@ -41,7 +41,7 @@ export const stepsData = [
             },
             {
                 id: "frequency", label: "How often does this come up?",
-                hint: "Select all that apply", type: "multi-select",
+                type: "select",
                 options: [
                     "Multiple times a day", "Daily", "Weekly", "Monthly",
                     "Per order / transaction", "Seasonal (e.g. peak periods, launches)", "Other"
@@ -49,7 +49,7 @@ export const stepsData = [
                 help: {
                     why: "Frequency tells us how much pain this causes. Something that happens 50 times a day is more urgent than something monthly.",
                     examples: [
-                        '"Multiple times a day" + "Per order" — CS answering the same product question with every enquiry.',
+                        '"Multiple times a day" — CS answering the same product question with every enquiry.',
                         '"Weekly" — Manually compiling a trade sales report every Monday.',
                         '"Seasonal" — Bridal season creates a spike in colour match requests every spring.'
                     ]
@@ -57,7 +57,7 @@ export const stepsData = [
             },
             {
                 id: "frequency_other", label: "Tell us more:", type: "text",
-                showIf: (a) => Array.isArray(a.frequency) && a.frequency.includes("Other")
+                showIf: (a) => a.frequency === "Other"
             },
             {
                 id: "tried_before", label: "Has anyone tried to solve this before?",
@@ -90,23 +90,70 @@ export const stepsData = [
                     why: "Understanding the current process — even if it's messy — helps us work out what to automate and what needs human judgement.",
                     examples: [
                         "1. Customer emails asking for a colour match. 2. CS opens the email and looks at the attached photo. 3. CS compares it against the swatch chart on screen. 4. CS types a recommendation and sends it back. Takes about 10 mins each time.",
-                        "1. Abbey downloads the Shopify orders CSV. 2. Filters it by trade customers. 3. Copies the data into a separate spreadsheet. 4. Manually adds margin calculations. 5. Emails it to the trade manager."
+                        "1. A colleague downloads the Shopify orders CSV. 2. Filters it by trade customers. 3. Copies the data into a separate spreadsheet. 4. Manually adds margin calculations. 5. Emails it to the trade manager."
                     ],
                     tip: "Numbered steps work best. Don't worry about being too detailed — more is better here."
                 }
             },
             {
-                id: "time_spent", label: "How much time does this take per week?",
+                id: "time_spent",
+                label: (a) => {
+                    const f = a.frequency;
+                    if (f === "Multiple times a day" || f === "Daily") return "How much time does this take per day?";
+                    if (f === "Per order / transaction") return "How much time does this take per order / transaction?";
+                    if (f === "Monthly") return "How much time does this take per month?";
+                    if (f === "Seasonal (e.g. peak periods, launches)") return "How much time does this take per season / peak period?";
+                    return "How much time does this take per week?";
+                },
                 hint: "Your best guess is fine. Pick the closest size.", type: "select",
-                options: [
-                    "XS — About 15 minutes",
-                    "S — About 30 minutes to 1 hour",
-                    "M — 1 to 3 hours",
-                    "L — 3 to 5 hours",
-                    "XL — 5 hours to a full day",
-                    "XXL — More than a full day",
-                    "Not sure"
-                ],
+                options: (a) => {
+                    const f = a.frequency;
+                    if (f === "Multiple times a day" || f === "Daily") return [
+                        "XS — About 5 minutes",
+                        "S — About 15 to 30 minutes",
+                        "M — 30 minutes to 1 hour",
+                        "L — 1 to 3 hours",
+                        "XL — 3 to 5 hours",
+                        "XXL — More than 5 hours",
+                        "Not sure"
+                    ];
+                    if (f === "Per order / transaction") return [
+                        "XS — Under 2 minutes",
+                        "S — 2 to 5 minutes",
+                        "M — 5 to 15 minutes",
+                        "L — 15 to 30 minutes",
+                        "XL — 30 to 60 minutes",
+                        "XXL — More than an hour",
+                        "Not sure"
+                    ];
+                    if (f === "Monthly") return [
+                        "XS — Under 30 minutes",
+                        "S — 30 minutes to 2 hours",
+                        "M — 2 to 5 hours",
+                        "L — 5 to 10 hours",
+                        "XL — 10 hours to 2 days",
+                        "XXL — More than 2 days",
+                        "Not sure"
+                    ];
+                    if (f === "Seasonal (e.g. peak periods, launches)") return [
+                        "XS — A few hours total",
+                        "S — About half a day",
+                        "M — 1 to 2 days",
+                        "L — 3 to 5 days",
+                        "XL — More than a week",
+                        "XXL — Weeks of effort",
+                        "Not sure"
+                    ];
+                    return [
+                        "XS — About 15 minutes",
+                        "S — About 30 minutes to 1 hour",
+                        "M — 1 to 3 hours",
+                        "L — 3 to 5 hours",
+                        "XL — 5 hours to a full day",
+                        "XXL — More than a full day",
+                        "Not sure"
+                    ];
+                },
                 help: {
                     why: "This is our single best signal for prioritisation. A task eating 5+ hours a week is a much stronger case than one taking 15 minutes.",
                     examples: [
@@ -121,13 +168,13 @@ export const stepsData = [
                 id: "tools_used", label: "Which tools or systems are involved?",
                 hint: "Tick all that apply", type: "multi-select",
                 options: [
-                    "Shopify", "Klaviyo", "ClickUp", "n8n", "Google Sheets",
-                    "Google Docs", "Google Drive", "Email (Gmail / Outlook)",
-                    "Cliphair website (front-end)", "Phone / manual process", "Other"
+                    "Shopify", "Klaviyo", "Attentive", "ClickUp", "Gorgias", "Klear", "Triple Whale", "Google Ads", "Google Analytics", "Intelligems", "Meta", "TikTok", "Instagram", "WhatsApp", "n8n", "Google Sheets",
+                    "Google Docs", "Google Drive", "Email (Gmail / Outlook)", "Micrsoft Office (Word / Excel)",
+                    "Cliphair website (front-end)", "Phone / manual process", "Yotpo", "Dropbox", "Other"
                 ],
                 help: {
                     why: "Knowing which systems are involved tells us what needs to connect to what — and whether we already have the building blocks.",
-                    tip: 'If you\'re not sure what tool something lives in, just describe where you go to do the task. "I open a spreadsheet Abbey shared" is perfectly fine.'
+                    tip: 'If you\'re not sure what tool something lives in, just describe where you go to do the task. "I open a spreadsheet shared by someone else" is perfectly fine.'
                 }
             },
             {
@@ -199,7 +246,7 @@ export const stepsData = [
                 id: "who_benefits", label: "Who benefits from this being fixed?",
                 hint: "Tick all that apply", type: "multi-select",
                 options: [
-                    "Customer Service team", "Marketing team", "Warehouse / Fulfilment team",
+                    "Customer Service team", "Google Ads", "Paid Social", "Organic Social", "Influencer", "Warehouse / Fulfilment team",
                     "Trade / B2B team", "Web / Tech team", "Management",
                     "Retail customers (B2C)", "Trade customers (B2B / salons)",
                     "The business overall (revenue, efficiency)", "Other"
@@ -264,11 +311,11 @@ export const stepsData = [
             },
             {
                 id: "anyone_else", label: "Anyone else who should be involved or kept in the loop?",
-                hint: "Names or roles", type: "textarea",
+                hint: "Separate names or groups with commas", type: "textarea",
                 help: {
                     why: "Other people often have context that changes the approach. Better to know now than find out halfway through.",
                     examples: [
-                        "Abbey in marketing — she manages the brand guidelines.",
+                        "A colleague in marketing — manages the brand guidelines.",
                         "The trade team lead — they'll be the main users.",
                         "Nobody else, just me and my manager."
                     ]

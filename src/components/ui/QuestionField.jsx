@@ -50,10 +50,13 @@ const QuestionField = memo(function QuestionField({ question, value, onChange, a
         onChange(question.id, next.length ? next : [""]);
     }, [repeatableValues, onChange, question.id]);
 
+    const label = typeof question.label === 'function' ? question.label(answers) : question.label;
+    const options = typeof question.options === 'function' ? question.options(answers) : question.options;
+
     return (
         <div className="question-field">
             <div className="label-row">
-                <label htmlFor={inputId}>{question.label}</label>
+                <label htmlFor={inputId}>{label}</label>
                 <HelpBox
                     help={question.help}
                     isOpen={openHelp === question.id}
@@ -84,13 +87,13 @@ const QuestionField = memo(function QuestionField({ question, value, onChange, a
             {question.type === "select" && (
                 <select id={inputId} value={value || ""} onChange={handleTextChange}>
                     <option value="">— Select —</option>
-                    {question.options.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+                    {options.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
                 </select>
             )}
 
             {question.type === "multi-select" && (
                 <div className="checkbox-group">
-                    {question.options.map((opt) => (
+                    {options.map((opt) => (
                         <label key={opt} className="checkbox-label">
                             <input
                                 type="checkbox"
