@@ -6,7 +6,7 @@ export const typeSpecificQuestions = {
         questions: [
             {
                 id: "auto_trigger", label: "What kicks this off?",
-                type: "select",
+                type: "select", required: true,
                 options: [
                     "Something happens (new order, form submitted, email received)",
                     "A schedule (daily, weekly, monthly)",
@@ -22,7 +22,7 @@ export const typeSpecificQuestions = {
                 }
             },
             {
-                id: "auto_trigger_detail", label: "Tell us more about the trigger:", type: "textarea",
+                id: "auto_trigger_detail", label: "Tell us more about the trigger:", type: "textarea", required: true,
                 help: {
                     why: "A trigger is the specific event or condition that starts the automation — the 'if this happens, do that' moment.",
                     examples: [
@@ -36,7 +36,7 @@ export const typeSpecificQuestions = {
             },
             {
                 id: "auto_steps", label: "What should happen automatically, in order?",
-                hint: "Step 1 does X, then step 2 does Y, etc.", type: "textarea",
+                hint: "Step 1 does X, then step 2 does Y, etc.", type: "textarea", required: true,
                 help: {
                     why: "This is the recipe. The more detail you give, the more accurately we can build it.",
                     examples: [
@@ -46,7 +46,7 @@ export const typeSpecificQuestions = {
             },
             {
                 id: "auto_output", label: "What's the end result?",
-                hint: "An email sent, a spreadsheet updated, a notification, a record created, etc.", type: "textarea",
+                hint: "An email sent, a spreadsheet updated, a notification, a record created, etc.", type: "textarea", required: true,
                 help: {
                     examples: [
                         "An updated Google Sheet with this week's trade orders and margins.",
@@ -57,7 +57,7 @@ export const typeSpecificQuestions = {
             },
             {
                 id: "auto_failure", label: "What should happen if something goes wrong?",
-                hint: "Who gets told? Should it retry? Should it stop?", type: "textarea",
+                hint: "Who gets told? Should it retry? Should it stop?", type: "textarea", required: true,
                 help: {
                     why: "Things will go wrong eventually — a system goes down, data is missing, an API changes. Deciding this now means failures get caught instead of silently breaking.",
                     examples: [
@@ -70,7 +70,7 @@ export const typeSpecificQuestions = {
             {
                 id: "auto_sensitive", label: "Does this involve sensitive data?",
                 hint: "Tick all that apply",
-                type: "multi-select",
+                type: "multi-select", required: true,
                 options: [
                     "Customer data (names, emails, addresses)",
                     "Payment or financial data",
@@ -89,7 +89,7 @@ export const typeSpecificQuestions = {
         questions: [
             {
                 id: "agent_job", label: "What's this agent's core job?",
-                hint: "Answer customer questions, triage support tickets, recommend products, etc.", type: "textarea",
+                hint: "Answer customer questions, triage support tickets, recommend products, etc.", type: "textarea", required: true,
                 help: {
                     why: "An agent that tries to do everything does nothing well. What's the one thing it must be great at?",
                     examples: [
@@ -101,7 +101,7 @@ export const typeSpecificQuestions = {
             },
             {
                 id: "agent_knowledge", label: "What information does it need access to?",
-                hint: "Product guides, FAQs, order data, policies, etc.", type: "textarea",
+                hint: "Product guides, FAQs, order data, policies, etc.", type: "textarea", required: true,
                 help: {
                     why: "An agent is only as good as the information it can draw from. The more specific you are, the better it'll perform.",
                     examples: [
@@ -114,7 +114,7 @@ export const typeSpecificQuestions = {
             {
                 id: "agent_channel", label: "Where will people use it?",
                 hint: "Tick all that apply",
-                type: "multi-select",
+                type: "multi-select", required: true,
                 options: [
                     "Website chat widget", "Slack", "Email",
                     "Inside another tool (ClickUp, Shopify, etc.)",
@@ -136,7 +136,7 @@ export const typeSpecificQuestions = {
             },
             {
                 id: "agent_boundaries", label: "What should it never do or say?",
-                hint: "Topics to avoid, actions it shouldn't take, limits on its authority", type: "textarea",
+                hint: "Topics to avoid, actions it shouldn't take, limits on its authority", type: "textarea", required: true,
                 help: {
                     why: "Guardrails prevent the agent from going off-script. Think about what could go wrong if it answered incorrectly.",
                     examples: [
@@ -149,7 +149,7 @@ export const typeSpecificQuestions = {
             },
             {
                 id: "agent_escalation", label: "When should it hand off to a real person?",
-                hint: "What triggers the handoff, and who does it go to?", type: "textarea",
+                hint: "What triggers the handoff, and who does it go to?", type: "textarea", required: true,
                 help: {
                     why: "Even the best AI needs to know when to step aside. Clear escalation rules prevent frustrated customers.",
                     examples: [
@@ -167,7 +167,7 @@ export const typeSpecificQuestions = {
         tagline: "A custom tool with a screen people interact with",
         questions: [
             {
-                id: "app_who", label: "Who is this for?", type: "select",
+                id: "app_who", label: "Who is this for?", type: "select", required: true,
                 options: [
                     "Internal team only", "Customers (public-facing)",
                     "Trade customers (salons / professionals)",
@@ -177,7 +177,7 @@ export const typeSpecificQuestions = {
             },
             {
                 id: "app_screens", label: "Describe the key screens or pages — even roughly.",
-                hint: "What does someone see and do on each screen?", type: "textarea",
+                hint: "What does someone see and do on each screen?", type: "textarea", required: true,
                 help: {
                     why: "Even a rough description helps us estimate the size of the build and start thinking about layout.",
                     examples: [
@@ -189,7 +189,7 @@ export const typeSpecificQuestions = {
                 }
             },
             {
-                id: "app_login", label: "Do people need to log in?", type: "select",
+                id: "app_login", label: "Do people need to log in?", type: "select", required: true,
                 options: [
                     "Yes — different users see different things",
                     "Yes — but everyone sees the same content",
@@ -205,7 +205,7 @@ export const typeSpecificQuestions = {
                 }
             },
             {
-                id: "app_mobile", label: "Does it need to work on mobile?", type: "select",
+                id: "app_mobile", label: "Does it need to work on mobile?", type: "select", required: true,
                 options: [
                     "Yes — mobile first",
                     "Yes — should work on both mobile and desktop",

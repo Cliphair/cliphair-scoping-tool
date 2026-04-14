@@ -2,7 +2,7 @@ import { memo, useCallback } from 'react';
 import HelpBox from './HelpBox';
 import PriorityMatrix from './PriorityMatrix';
 
-const QuestionField = memo(function QuestionField({ question, value, onChange, answers, openHelp, onToggleHelp }) {
+const QuestionField = memo(function QuestionField({ question, value, onChange, answers, openHelp, onToggleHelp, error }) {
     if (question.showIf && !question.showIf(answers)) return null;
 
     const inputId = `field-${question.id}`;
@@ -54,9 +54,12 @@ const QuestionField = memo(function QuestionField({ question, value, onChange, a
     const options = typeof question.options === 'function' ? question.options(answers) : question.options;
 
     return (
-        <div className="question-field">
+        <div className={`question-field${error ? ' question-field--error' : ''}`}>
             <div className="label-row">
-                <label htmlFor={inputId}>{label}</label>
+                <label htmlFor={inputId}>
+                    {label}
+                    {question.required && <span className="required-mark" aria-hidden="true">*</span>}
+                </label>
                 <HelpBox
                     help={question.help}
                     isOpen={openHelp === question.id}
@@ -64,6 +67,7 @@ const QuestionField = memo(function QuestionField({ question, value, onChange, a
                 />
             </div>
             {question.hint && <span className="hint">{question.hint}</span>}
+            {error && <span className="field-error" role="alert">{error}</span>}
 
             {question.type === "text" && (
                 <input

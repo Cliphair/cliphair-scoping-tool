@@ -1,6 +1,7 @@
-import { memo } from 'react';
+import { memo, useState, useCallback } from 'react';
 import QuestionField from '../ui/QuestionField';
 import marquePanelCream from '../../assets/new branding/marque-panel---cream.png';
+import { validateQuestions, isValid } from '../../utils/validation';
 
 const StepQuestions = memo(function StepQuestions({
     step,
@@ -13,6 +14,32 @@ const StepQuestions = memo(function StepQuestions({
     openHelp,
     onToggleHelp,
 }) {
+    const [errors, setErrors] = useState({});
+
+    const handleAnswer = useCallback((id, value) => {
+        onAnswer(id, value);
+        // Clear the error for this field as soon as it's answered
+        setErrors((prev) => {
+            if (!prev[id]) return prev;
+            const next = { ...prev };
+            delete next[id];
+            return next;
+        });
+    }, [onAnswer]);
+
+    const handleNext = useCallback(() => {
+        const newErrors = validateQuestions(step.questions, answers);
+        if (!isValid(newErrors)) {
+            setErrors(newErrors);
+            // Scroll to the first invalid field
+            const firstId = Object.keys(newErrors)[0];
+            document.getElementById(`field-${firstId}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+        setErrors({});
+        onNext();
+    }, [step.questions, answers, onNext]);
+
     return (
         <div className="step-content">
             <div className="step-header">
@@ -29,16 +56,17 @@ const StepQuestions = memo(function StepQuestions({
                         key={q.id}
                         question={q}
                         value={answers[q.id]}
-                        onChange={onAnswer}
+                        onChange={handleAnswer}
                         answers={answers}
                         openHelp={openHelp}
                         onToggleHelp={onToggleHelp}
+                        error={errors[q.id]}
                     />
                 ))}
             </div>
             <div className="step-nav">
                 <button className="btn btn-secondary" onClick={onBack}>← Back</button>
-                <button className="btn btn-primary" onClick={onNext}>Continue →</button>
+                <button className="btn btn-primary" onClick={handleNext}>Continue →</button>
             </div>
         </div>
     );

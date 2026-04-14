@@ -18,7 +18,7 @@ export const anythingElseStep = {
         },
         {
             id: "brand_guidelines", label: "Does this need to follow Cliphair brand guidelines?",
-            type: "select", options: ["Yes", "No", "Not sure"],
+            type: "select", options: ["Yes", "No", "Not sure"], required: true,
             help: { tip: 'If customers or trade clients will see it, the answer is probably "Yes." Internal-only tools usually don\'t need full brand styling.' }
         },
         {
