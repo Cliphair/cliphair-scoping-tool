@@ -232,14 +232,14 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--clr-coral);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0;
 }
 
 .step-number-row {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
 }
 
 .step-marque-icon {

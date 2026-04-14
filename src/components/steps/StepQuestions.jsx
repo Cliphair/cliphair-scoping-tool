@@ -1,6 +1,6 @@
 import { memo, useState, useCallback } from 'react';
 import QuestionField from '../ui/QuestionField';
-import marquePanelCream from '../../assets/new branding/marque-panel---cream.png';
+import marquePanelCoral from '../../assets/new branding/marque-panel---coral.png';
 import { validateQuestions, isValid } from '../../utils/validation';
 
 const StepQuestions = memo(function StepQuestions({
@@ -44,8 +44,8 @@ const StepQuestions = memo(function StepQuestions({
         <div className="step-content">
             <div className="step-header">
                 <div className="step-number-row">
-                    <img src={marquePanelCream} alt="" className="step-marque-icon" />
-                    {/* <span className="step-number">Step {stepIndex + 1} of {totalCoreSteps}</span> */}
+                    <img src={marquePanelCoral} alt="" className="step-marque-icon" />
+                    <span className="step-number">Step {stepIndex + 1} of {totalCoreSteps}</span>
                 </div>
                 <h2>{step.title}</h2>
                 <p className="step-description">{step.description}</p>
