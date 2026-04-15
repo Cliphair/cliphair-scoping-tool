@@ -591,7 +591,7 @@ function ProgressBar({ currentStep, totalSteps, stepLabels }) {
                 <div className="progress-fill" style={{ width: `${percentage}%` }}></div>
             </div>
             <div className="progress-label">
-                Step {currentStep + 1} of {totalSteps} — {stepLabels[currentStep]}
+                Step {currentStep} of {totalSteps - 1} — {stepLabels[currentStep]}
             </div>
         </div>
     );
