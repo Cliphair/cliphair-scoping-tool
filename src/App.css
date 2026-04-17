@@ -603,6 +603,21 @@ body {
     border-color: var(--clr-text-muted);
 }
 
+.btn-ghost {
+    background: transparent;
+    color: var(--clr-text-muted);
+    border: 1px dashed var(--clr-border);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+.btn-ghost:hover:not(:disabled) {
+    color: var(--clr-text);
+    border-color: var(--clr-text-muted);
+    background: var(--clr-primary-light);
+}
+
 .btn-lg {
     font-size: 1.05rem;
     padding: 0.85rem 2rem;
@@ -1111,8 +1126,147 @@ body {
 }
 
 /* ─────────────────────────────────────────────
-   RESPONSIVE
+   PUBLISH MODAL
    ───────────────────────────────────────────── */
+
+.publish-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(59, 56, 56, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.publish-modal {
+    background: var(--clr-surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--clr-border);
+    padding: 2rem;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 8px 32px rgba(59, 56, 56, 0.18);
+}
+
+.publish-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.publish-modal-header h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--clr-text);
+}
+
+.publish-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: var(--clr-text-muted);
+    padding: 0.25rem;
+    line-height: 1;
+}
+
+.publish-modal-close:hover:not(:disabled) {
+    color: var(--clr-text);
+}
+
+.publish-modal-desc {
+    font-size: 0.9rem;
+    color: var(--clr-text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.55;
+}
+
+.publish-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.publish-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.publish-field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--clr-text);
+}
+
+.publish-field input {
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    color: var(--clr-text);
+    background: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 0.85rem;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+
+.publish-field input:focus {
+    outline: none;
+    border-color: var(--clr-charcoal);
+}
+
+.publish-field input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.publish-field-error {
+    font-size: 0.8rem;
+    color: #c0392b;
+}
+
+.publish-error-msg {
+    font-size: 0.875rem;
+    color: #c0392b;
+    margin-bottom: 1rem;
+}
+
+.publish-modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+}
+
+.publish-success {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.publish-success-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.publish-success h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--clr-text);
+}
+
+.publish-success p {
+    font-size: 0.9rem;
+    color: var(--clr-text-muted);
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+}
+
+
 
 @media (max-width: 600px) {
     .app-main {

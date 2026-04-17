@@ -125,6 +125,7 @@ const StepProjectType = memo(function StepProjectType({
 
             <div className="step-nav">
                 <button className="btn btn-secondary" onClick={onBack}>← Back</button>
+                <button className="btn btn-ghost" onClick={() => handleTypeSelect("automation")}>Populate test data</button>
                 <button
                     className="btn btn-primary"
                     onClick={onNext}
