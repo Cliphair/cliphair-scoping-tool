@@ -7,6 +7,7 @@ export const stepsData = [
             {
                 id: "problem_statement", label: "What's the problem you're trying to solve?",
                 hint: "1-2 sentences in plain English. No jargon needed.", type: "textarea", required: true,
+                test_data: "We manually check every order for colour mismatches before dispatch, taking 2–3 minutes per order across hundreds of orders per week.",
                 help: {
                     why: "A clear problem statement helps us understand what to fix, not just what to build.",
                     examples: [
@@ -21,6 +22,7 @@ export const stepsData = [
                 id: "who_affected", label: "Who does this affect?",
                 hint: "Tick all that apply, and add anyone else in the text box",
                 type: "multi-select", required: true,
+                test_data: ["Customer Service team", "Warehouse / Fulfilment team"],
                 options: [
                     "Customer Service team", "Google Ads", "Paid Social", "Organic Social", "Influencer", "Warehouse / Fulfilment team",
                     "Trade / B2B team", "Web / Tech team", "Management",
@@ -42,6 +44,7 @@ export const stepsData = [
             {
                 id: "frequency", label: "How often does this come up?",
                 type: "select", required: true,
+                test_data: "Multiple times a day",
                 options: [
                     "Multiple times a day", "Daily", "Weekly", "Monthly",
                     "Per order / transaction", "Seasonal (e.g. peak periods, launches)", "Other"
@@ -62,6 +65,7 @@ export const stepsData = [
             {
                 id: "tried_before", label: "Has anyone tried to solve this before?",
                 type: "select", options: ["Yes", "No"], required: true,
+                test_data: "Yes",
                 help: {
                     why: "Knowing what's been tried stops us repeating the same mistakes.",
                     examples: [
@@ -74,6 +78,7 @@ export const stepsData = [
             {
                 id: "tried_before_detail", label: "What was tried and what happened?",
                 hint: "What worked, what didn't, and why it was abandoned", type: "textarea", required: true,
+                test_data: "We built a Google Sheet to track mismatches but nobody kept it updated and it became out of date within a few weeks.",
                 showIf: (a) => a.tried_before === "Yes"
             }
         ]
@@ -86,6 +91,7 @@ export const stepsData = [
             {
                 id: "current_process", label: "Walk us through what happens today, step by step.",
                 hint: "Describe the process as if showing a new starter what to do.", type: "textarea", required: true,
+                test_data: "1. Order comes in via Shopify. 2. Warehouse opens the order. 3. Manually checks the colour code against a printed swatch chart. 4. If a mismatch is found, flags it to CS. 5. CS emails the customer to confirm. Takes 2–3 minutes per order.",
                 help: {
                     why: "Understanding the current process — even if it's messy — helps us work out what to automate and what needs human judgement.",
                     examples: [
@@ -106,6 +112,7 @@ export const stepsData = [
                     return "How much time does this take per week?";
                 },
                 hint: "Your best guess is fine. Pick the closest size.", type: "select", required: true,
+                test_data: "L — 1 to 3 hours",
                 options: (a) => {
                     const f = a.frequency;
                     if (f === "Multiple times a day" || f === "Daily") return [
@@ -167,6 +174,7 @@ export const stepsData = [
             {
                 id: "tools_used", label: "Which tools or systems are involved?",
                 hint: "Tick all that apply", type: "multi-select", required: true,
+                test_data: ["Shopify", "Google Sheets", "Email (Gmail / Outlook)"],
                 options: [
                     "Shopify", "Klaviyo", "Attentive", "ClickUp", "Gorgias", "Klear", "Triple Whale", "Google Ads", "Google Analytics", "Intelligems", "Meta", "TikTok", "Instagram", "WhatsApp", "n8n", "Google Sheets",
                     "Google Docs", "Google Drive", "Email (Gmail / Outlook)", "Micrsoft Office (Word / Excel)",
@@ -205,6 +213,7 @@ export const stepsData = [
             {
                 id: "desired_outcome", label: "What does the ideal end result look like?",
                 hint: "What changes? What gets easier? Be specific if you can.", type: "textarea", required: true,
+                test_data: "Colour mismatches are flagged automatically when an order is placed, with CS only reviewing edge cases. No manual checking by the warehouse team.",
                 help: {
                     why: "This helps us understand your vision so we can build towards it — even if v1 only gets partway there.",
                     examples: [
@@ -218,6 +227,7 @@ export const stepsData = [
             {
                 id: "must_do", label: "What's the single most important thing this must do?",
                 hint: "If it only did one thing, what would it be?", type: "textarea", required: true,
+                test_data: "It must automatically detect colour mismatches between items in an order before it reaches the warehouse.",
                 help: {
                     why: "This keeps us focused. Feature lists grow quickly — this anchors us to what actually matters.",
                     examples: [
@@ -231,6 +241,7 @@ export const stepsData = [
                 id: "human_touchpoints", label: "Where does a human still need to be involved?",
                 hint: "AI and automation can handle a lot, but some steps might need a person's judgement. Think about where that line is.",
                 type: "textarea", required: true,
+                test_data: "A human should review any order flagged as uncertain — for example, where the colour codes are similar but not identical. CS should make the final call on those.",
                 help: {
                     why: "Most projects don't fully replace humans — they handle the repetitive parts so your team can focus on the bits that need real judgement.",
                     examples: [
@@ -245,6 +256,7 @@ export const stepsData = [
             {
                 id: "who_benefits", label: "Who benefits from this being fixed?",
                 hint: "Tick all that apply", type: "multi-select", required: true,
+                test_data: ["Customer Service team", "Warehouse / Fulfilment team", "The business overall (revenue, efficiency)"],
                 options: [
                     "Customer Service team", "Google Ads", "Paid Social", "Organic Social", "Influencer", "Warehouse / Fulfilment team",
                     "Trade / B2B team", "Web / Tech team", "Management",
@@ -274,6 +286,7 @@ export const stepsData = [
             {
                 id: "priority", label: "Where does this sit?",
                 hint: "Click the quadrant that best describes this project.", type: "matrix", required: true,
+                test_data: "Do Now",
                 help: {
                     why: "Not everything that feels urgent is actually important, and some important things don't feel urgent. This helps us prioritise honestly.",
                     examples: [
@@ -286,6 +299,7 @@ export const stepsData = [
             },
             {
                 id: "deadline", label: "When does this need to be done by?", type: "select", required: true,
+                test_data: "Within 1 month",
                 options: [
                     "As soon as possible", "Within 1 month", "1-3 months",
                     "3-6 months", "No hard deadline", "Other"
@@ -306,6 +320,7 @@ export const stepsData = [
             },
             {
                 id: "approver", label: "Who needs to sign off on this?", type: "select", required: true,
+                test_data: "Manager",
                 options: ["Manager", "Director", "Both (Manager recommends, Director approves)"],
                 help: { why: "So we know who to loop in for approval and who has final say." }
             },

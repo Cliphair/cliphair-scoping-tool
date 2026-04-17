@@ -40,6 +40,15 @@ const StepQuestions = memo(function StepQuestions({
         onNext();
     }, [step.questions, answers, onNext]);
 
+    const handlePopulate = useCallback(() => {
+        step.questions.forEach((q) => {
+            if (q.test_data !== undefined) {
+                onAnswer(q.id, q.test_data);
+            }
+        });
+        setErrors({});
+    }, [step.questions, onAnswer]);
+
     return (
         <div className="step-content">
             <div className="step-header">
@@ -66,6 +75,7 @@ const StepQuestions = memo(function StepQuestions({
             </div>
             <div className="step-nav">
                 <button className="btn btn-secondary" onClick={onBack}>← Back</button>
+                <button className="btn btn-ghost" onClick={handlePopulate}>Populate test data</button>
                 <button className="btn btn-primary" onClick={handleNext}>Continue →</button>
             </div>
         </div>

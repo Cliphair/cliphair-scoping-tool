@@ -603,6 +603,21 @@ body {
     border-color: var(--clr-text-muted);
 }
 
+.btn-ghost {
+    background: transparent;
+    color: var(--clr-text-muted);
+    border: 1px dashed var(--clr-border);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+.btn-ghost:hover:not(:disabled) {
+    color: var(--clr-text);
+    border-color: var(--clr-text-muted);
+    background: var(--clr-primary-light);
+}
+
 .btn-lg {
     font-size: 1.05rem;
     padding: 0.85rem 2rem;

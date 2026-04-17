@@ -7,6 +7,7 @@ export const typeSpecificQuestions = {
             {
                 id: "auto_trigger", label: "What kicks this off?",
                 type: "select", required: true,
+                test_data: "Something happens (new order, form submitted, email received)",
                 options: [
                     "Something happens (new order, form submitted, email received)",
                     "A schedule (daily, weekly, monthly)",
@@ -23,6 +24,7 @@ export const typeSpecificQuestions = {
             },
             {
                 id: "auto_trigger_detail", label: "Tell us more about the trigger:", type: "textarea", required: true,
+                test_data: "A new order is placed in Shopify containing two or more hair extension products with different colour codes.",
                 help: {
                     why: "A trigger is the specific event or condition that starts the automation — the 'if this happens, do that' moment.",
                     examples: [
@@ -37,6 +39,7 @@ export const typeSpecificQuestions = {
             {
                 id: "auto_steps", label: "What should happen automatically, in order?",
                 hint: "Step 1 does X, then step 2 does Y, etc.", type: "textarea", required: true,
+                test_data: "1. New Shopify order is detected. 2. System checks all extension products in the order for colour code mismatches. 3. If a mismatch is found, a flag is added to the order and a ClickUp task is created for CS to review. 4. If no mismatch, order proceeds as normal.",
                 help: {
                     why: "This is the recipe. The more detail you give, the more accurately we can build it.",
                     examples: [
@@ -47,6 +50,7 @@ export const typeSpecificQuestions = {
             {
                 id: "auto_output", label: "What's the end result?",
                 hint: "An email sent, a spreadsheet updated, a notification, a record created, etc.", type: "textarea", required: true,
+                test_data: "A ClickUp task created for the CS team with the order details and a mismatch summary. A tag added to the Shopify order for easy filtering.",
                 help: {
                     examples: [
                         "An updated Google Sheet with this week's trade orders and margins.",
@@ -58,6 +62,7 @@ export const typeSpecificQuestions = {
             {
                 id: "auto_failure", label: "What should happen if something goes wrong?",
                 hint: "Who gets told? Should it retry? Should it stop?", type: "textarea", required: true,
+                test_data: "Send an email to the tech team if the automation fails. Don't retry automatically — the warehouse will catch it manually as a fallback.",
                 help: {
                     why: "Things will go wrong eventually — a system goes down, data is missing, an API changes. Deciding this now means failures get caught instead of silently breaking.",
                     examples: [
@@ -71,6 +76,7 @@ export const typeSpecificQuestions = {
                 id: "auto_sensitive", label: "Does this involve sensitive data?",
                 hint: "Tick all that apply",
                 type: "multi-select", required: true,
+                test_data: ["Customer data (names, emails, addresses)"],
                 options: [
                     "Customer data (names, emails, addresses)",
                     "Payment or financial data",
@@ -90,6 +96,7 @@ export const typeSpecificQuestions = {
             {
                 id: "agent_job", label: "What's this agent's core job?",
                 hint: "Answer customer questions, triage support tickets, recommend products, etc.", type: "textarea", required: true,
+                test_data: "Help customers find the right hair extension colour and type for their hair, reducing the volume of colour match enquiries to the CS team.",
                 help: {
                     why: "An agent that tries to do everything does nothing well. What's the one thing it must be great at?",
                     examples: [
@@ -102,6 +109,7 @@ export const typeSpecificQuestions = {
             {
                 id: "agent_knowledge", label: "What information does it need access to?",
                 hint: "Product guides, FAQs, order data, policies, etc.", type: "textarea", required: true,
+                test_data: "Cliphair product catalogue, colour matching guide, hair type suitability charts, FAQs, returns and shipping policy.",
                 help: {
                     why: "An agent is only as good as the information it can draw from. The more specific you are, the better it'll perform.",
                     examples: [
@@ -115,6 +123,7 @@ export const typeSpecificQuestions = {
                 id: "agent_channel", label: "Where will people use it?",
                 hint: "Tick all that apply",
                 type: "multi-select", required: true,
+                test_data: ["Website chat widget"],
                 options: [
                     "Website chat widget", "Slack", "Email",
                     "Inside another tool (ClickUp, Shopify, etc.)",
@@ -137,6 +146,7 @@ export const typeSpecificQuestions = {
             {
                 id: "agent_boundaries", label: "What should it never do or say?",
                 hint: "Topics to avoid, actions it shouldn't take, limits on its authority", type: "textarea", required: true,
+                test_data: "Never recommend self-application of tape or keratin extensions — always direct to a professional. Never promise specific delivery dates. Never discuss competitor brands.",
                 help: {
                     why: "Guardrails prevent the agent from going off-script. Think about what could go wrong if it answered incorrectly.",
                     examples: [
@@ -150,6 +160,7 @@ export const typeSpecificQuestions = {
             {
                 id: "agent_escalation", label: "When should it hand off to a real person?",
                 hint: "What triggers the handoff, and who does it go to?", type: "textarea", required: true,
+                test_data: "If the customer asks about a return, complaint, or damaged item — hand off to a human CS agent immediately. If it's asked the same question three times without a satisfying answer, offer a human.",
                 help: {
                     why: "Even the best AI needs to know when to step aside. Clear escalation rules prevent frustrated customers.",
                     examples: [
@@ -168,6 +179,7 @@ export const typeSpecificQuestions = {
         questions: [
             {
                 id: "app_who", label: "Who is this for?", type: "select", required: true,
+                test_data: "Internal team only",
                 options: [
                     "Internal team only", "Customers (public-facing)",
                     "Trade customers (salons / professionals)",
@@ -178,6 +190,7 @@ export const typeSpecificQuestions = {
             {
                 id: "app_screens", label: "Describe the key screens or pages — even roughly.",
                 hint: "What does someone see and do on each screen?", type: "textarea", required: true,
+                test_data: "A dashboard showing all Shopify orders from the past 7 days with a colour mismatch flag. A filter by status (flagged, cleared, resolved). A detail view per order showing the mismatch reason and actions taken.",
                 help: {
                     why: "Even a rough description helps us estimate the size of the build and start thinking about layout.",
                     examples: [
@@ -190,6 +203,7 @@ export const typeSpecificQuestions = {
             },
             {
                 id: "app_login", label: "Do people need to log in?", type: "select", required: true,
+                test_data: "Yes — different users see different things",
                 options: [
                     "Yes — different users see different things",
                     "Yes — but everyone sees the same content",
@@ -206,6 +220,7 @@ export const typeSpecificQuestions = {
             },
             {
                 id: "app_mobile", label: "Does it need to work on mobile?", type: "select", required: true,
+                test_data: "Yes — should work on both mobile and desktop",
                 options: [
                     "Yes — mobile first",
                     "Yes — should work on both mobile and desktop",
