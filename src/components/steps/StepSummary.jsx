@@ -7,6 +7,10 @@ import logoRangedDark from '../../assets/new branding/ranged---dark-gray.png';
 const WEBHOOK_URL = 'https://n8n.srv1418821.hstgr.cloud/webhook/3764b167-82f6-4f37-b047-5e36e945532f';
 
 // Pure utility — no closure over component state
+function resolveLabel(label, answers) {
+    return typeof label === 'function' ? label(answers) : label;
+}
+
 function formatValue(val) {
     if (Array.isArray(val)) return val.filter(Boolean).join(", ") || "—";
     return val || "—";
@@ -39,20 +43,20 @@ const StepSummary = memo(function StepSummary({ answers, projectType, onBack, on
             md += `## ${step.title}\n\n`;
             step.questions.forEach((q) => {
                 if (q.showIf && !q.showIf(answers)) return;
-                md += `**${q.label}**\n${formatValue(answers[q.id])}\n\n`;
+                md += `**${resolveLabel(q.label, answers)}**\n${formatValue(answers[q.id])}\n\n`;
             });
         });
 
         md += `---\n\n## ${typeConfig.icon} ${typeConfig.label} — Specific Details\n\n`;
         typeConfig.questions.forEach((q) => {
             if (q.showIf && !q.showIf(answers)) return;
-            md += `**${q.label}**\n${formatValue(answers[q.id])}\n\n`;
+            md += `**${resolveLabel(q.label, answers)}**\n${formatValue(answers[q.id])}\n\n`;
         });
 
         md += `---\n\n## Anything Else\n\n`;
         anythingElseStep.questions.forEach((q) => {
             if (q.showIf && !q.showIf(answers)) return;
-            md += `**${q.label}**\n${formatValue(answers[q.id])}\n\n`;
+            md += `**${resolveLabel(q.label, answers)}**\n${formatValue(answers[q.id])}\n\n`;
         });
 
         return md;
@@ -147,18 +151,18 @@ const StepSummary = memo(function StepSummary({ answers, projectType, onBack, on
     return (
         <div className="step-content summary-step" ref={briefRef}>
             <div className="step-header">
-                <h2>📄 Project Brief — Review</h2>
+                <h2>📄 Project Brief — Review before Publishing</h2>
                 <p className="step-description">
                     Review the compiled brief below. Copy or download it to hand off to the build team.
                 </p>
             </div>
 
-            <div className="summary-actions">
+            {/* <div className="summary-actions">
                 <button className="btn btn-primary" onClick={openModal}>🚀 Publish Brief</button>
                 <button className="btn btn-secondary" onClick={handleCopy}>📋 Copy as Markdown</button>
                 <button className="btn btn-secondary" onClick={handleDownload}>⬇ Download .md</button>
                 <button className="btn btn-outline" onClick={onReset}>🔄 Start Over</button>
-            </div>
+            </div> */}
 
             <div className="brief-output">
                 <div className="brief-header-brand">
@@ -179,7 +183,7 @@ const StepSummary = memo(function StepSummary({ answers, projectType, onBack, on
                             const val = formatValue(answers[q.id]);
                             return (
                                 <div key={q.id} className="brief-item">
-                                    <dt>{q.label}</dt>
+                                    <dt>{resolveLabel(q.label, answers)}</dt>
                                     <dd className={val === "—" ? "empty" : ""}>{val}</dd>
                                 </div>
                             );
@@ -198,9 +202,13 @@ const StepSummary = memo(function StepSummary({ answers, projectType, onBack, on
                     <li>Work begins</li>
                 </ol>
             </div>
-
-            <div className="step-nav">
+            
+            <div className="step-nav summary-actions">
                 <button className="btn btn-secondary" onClick={onBack}>← Back to Edit</button>
+                <button className="btn btn-outline" onClick={onReset}>🔄 Start Over</button>
+                <button className="btn btn-secondary" onClick={handleCopy}>📋 Copy as Markdown</button>
+                
+                <button className="btn btn-primary" onClick={openModal}>🚀 Publish Brief</button>
             </div>
 
             {modalOpen && (
